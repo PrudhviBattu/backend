@@ -6,7 +6,7 @@ const {
   updateUser,
   createUser,
   deleteUser,
-} = require('../controllers/userControllers');
+} = require('../controllers/userController');
 
 // router.get('/', getUsers);
 // router.post('/', createUser); minimizing these 2 by chaining
