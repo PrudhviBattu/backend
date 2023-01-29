@@ -3,7 +3,7 @@ const dotenv = require('dotenv').config();
 const port = process.env.PORT || 5000;
 const { connectDB } = require('./config/db');
 const { errorHandler } = require('./middleware/errorMiddleware');
-
+const cors = require('cors');
 const app = express();
 connectDB(); //DB connection
 
@@ -11,11 +11,16 @@ connectDB(); //DB connection
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use(
+  cors({
+    origin: 'http://localhost:4200',
+  })
+);
 // routes
 app.use('/api/goal', require('./routes/goalRoutes'));
 app.use('/api/user', require('./routes/userRoutes'));
-
 app.use(errorHandler); //custom error handler
+
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
